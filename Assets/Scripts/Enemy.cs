@@ -9,6 +9,9 @@ public class Enemy : MonoBehaviour
     public float distanceBetween;
 
     private float distance;
+    public int currentHealth = 20;
+    public static bool isEnemyDead = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -31,4 +34,17 @@ public class Enemy : MonoBehaviour
             transform.rotation = Quaternion.Euler(Vector3.forward * angle);
         }
     }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth = currentHealth - damage;
+
+        if (currentHealth <= 0 && isEnemyDead == false)
+        {
+            Debug.Log("DEAD: " + currentHealth);
+            isEnemyDead = true;
+
+        }
+    }
+    
 }
